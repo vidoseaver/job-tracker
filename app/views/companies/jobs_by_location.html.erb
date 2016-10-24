@@ -1,0 +1,12 @@
+<h3>All Jobs by Location</h3>
+
+<ul>
+  <% @companies.each do |company| %>
+    <li>  <%= company.name %></li>
+    <ul>
+      <% company.jobs.each do |job| %>
+        <li> <%=job.title %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>

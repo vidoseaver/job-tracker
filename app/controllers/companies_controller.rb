@@ -1,6 +1,14 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all
+    if include_location?
+      @companies = Company.where(city: city)
+      render :city
+    elsif include_sort?
+      @companies = Company.order(:city)
+      render :jobs_by_location
+    else
+      @companies = Company.all
+    end
   end
 
   def new
@@ -18,8 +26,9 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    company = Company.find(params[:id])
-    redirect_to company_jobs_path(company)
+    @company = Company.find(params[:id])
+    @contact = Contact.new
+    # redirect_to company_jobs_path(company)
   end
 
   def edit
@@ -50,5 +59,18 @@ class CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name, :city)
+  end
+
+  def include_sort?
+  true if params[:sort]
+  end
+
+  def city
+    params[:location]
+  end
+
+  def include_location?
+    true if params[:location]
+
   end
 end

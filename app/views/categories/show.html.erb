@@ -1,0 +1,11 @@
+<p class="text-center">
+
+<h3><%= @category.title %></h3>
+  <ul>
+    <% @category.jobs.each do |job| %>
+      <li><%= job.title %></li>
+      <% end %>
+  </ul>
+<br>
+<%= link_to "Edit", edit_category_path(@category) %>
+</p>

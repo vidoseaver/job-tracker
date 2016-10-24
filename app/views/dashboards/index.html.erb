@@ -1,0 +1,33 @@
+
+
+<div class="row">
+  <div class="col-md-4">
+
+  <h3>Top Three Companies By Average level of interest</h3>
+
+  <ol>
+    <% @company.show_top_three.each do |line| %>
+    <li> <%=line%></li>
+    <% end %>
+  </ol>
+</div>
+
+  <div class="col-md-4">
+    <h3>Amount of jobs by Level of interest</h3>
+
+    <ul>
+      <%@job.show_by_count_of_jobs_by_level_of_interest.each do |line| %>
+      <li><%=line%></li>
+      <% end %>
+  </ul>
+  </div>
+
+  <div class="col-md-4">
+    <h3>Count of Jobs by Location</h3>
+    <ul>
+      <% @companies.each do |name| %>
+      <li> <%=link_to name, "#{companies_path}?location=#{name}" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

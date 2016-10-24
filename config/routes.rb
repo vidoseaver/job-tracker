@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
+  get '/jobs?sort=location', to:'jobs#index'
+  get '/dashboard', to: 'dashboards#index'
+  resources :comments, only: [:create]
+
+  resources :categories
   resources :companies do
     resources :jobs
+    resources :contacts, only: [:create]
   end
+  resources :jobs, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
