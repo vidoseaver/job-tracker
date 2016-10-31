@@ -28,4 +28,18 @@ describe Job do
       expect(job).to respond_to(:company)
     end
   end
+
+  describe "analysis" do
+    it "it can show a count of jobs by level of interest" do
+      category = Category.create(title:"whatever")
+      company = Company.create(name:"turing", city:"denver")
+      job = Job.new
+      job_1 = Job.create(title: "Software", level_of_interest: 1, description: "Wahooo",company:company, category:category)
+      job_2 = Job.create(title: "Software", level_of_interest: 2, description: "Wahooo",company:company, category:category)
+      job_25 = Job.create(title: "Software", level_of_interest: 2, description: "Wahooo",company:company, category:category)
+      job_3 = Job.create(title: "Software", level_of_interest: 3, description: "Wahooo",company:company, category:category)
+
+      expect(job.show_by_count_of_jobs_by_level_of_interest).to eq(["There is 1 job with a level of interest of 3.", "There are 2 jobs with a level of interest of 2.", "There is 1 job with a level of interest of 1."])
+    end
+  end
 end

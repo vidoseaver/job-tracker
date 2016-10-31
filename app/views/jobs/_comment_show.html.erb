@@ -1,0 +1,6 @@
+<h4>Comments</h4>
+<ul>
+  <% @job.comments.reverse.each do |comment| %>
+  <li><%= comment.content%> </li>
+  <% end %>
+</ul>
